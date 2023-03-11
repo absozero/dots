@@ -1,0 +1,71 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source ~/.antigen/antigen.zsh
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle pip
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle Bhupesh-V/ugit
+antigen bundle zsh-users/zsh-autosuggestions
+# Load the theme.
+antigen theme romkatv/powerlevel10k
+# Tell Antigen that you're done.
+antigen apply
+
+export HOME='/data/data/com.termux/files/home'
+export PATH="/data/data/com.termux/files/home/.cargo/bin:$PATH"
+export PATH="/data/data/com.termux/files/home/go/bin:$PATH"
+export EDITOR=nvim
+export HISTTIMEFORMAT="%h %d %H:%M:%S "
+export HISTSIZE=30000
+export HISTFILESIZE=30000
+export PROMPT_COMMAND="history -a"
+export HISTCONTROL=ignorespace:ignoredups
+
+#Aliases
+alias server='python -m http.server'
+alias ls='exa -al'
+alias find=fd
+alias httpie='python -m httpie'
+alias cat=bat
+alias files=nnn
+alias cd=z
+
+alias du=ncdu
+alias vim=nvim
+alias tree='br -s'
+alias vims=vim
+alias assist=man
+alias dots='/data/data/com.termux/files/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+alias sed=sd
+alias nano=micro
+alias top=htop
+alias df=duf
+alias tester=hyperfine
+alias ping=gping
+alias hex=hexyl
+alias color=pastel
+alias ps=procs
+alias upgrade=topgrade
+alias update=topgrade
+alias get=aria2c
+alias tx=tmuxinator
+
+
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
